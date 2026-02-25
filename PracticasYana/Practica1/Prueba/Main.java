@@ -25,12 +25,13 @@ public class Main {
                 columna = scan.nextInt();
             
                 System.out.println("Elija una de las opc para continuar, con su valor númerico: ");
-                System.out.println("1-Agregar casilla, 2-Limpiar casilla, 3-Mostrar solución porque eres bien perdedor"); //Excepcion en caso de opc invalida
+                System.out.println("1-Agregar casilla, 2-Limpiar casilla"); //Excepcion en caso de opc invalida
                 opc = scan.nextInt();
                 scan.nextLine();
             }catch(InputMismatchException o){
                 System.out.println("Una de las opc es invalida vuelve a intentarlo");
                 scan.nextLine();
+                continue;
             }
             if(opc == 1){
                 try{
@@ -39,7 +40,7 @@ public class Main {
                 }catch(ExcepcionNumeroInvalido e){
                     System.out.println(e.getMessage());
                 }
-            }else if(opc == 2){
+            }else{
                 try{
                     //Verificar que el tablero no este vacio
                     tableroJugador = tablero.vaciarCelda(fila-1, columna-1);
@@ -48,10 +49,6 @@ public class Main {
                     System.out.println(e.getMessage());
 
                 }
-            }else{
-                    tablero.tableroSolucion();
-                    tablero.mostrarTablero(tableroSolucion);
-                
             }
             
         }while(!tablero.victoria(tableroSolucion));
