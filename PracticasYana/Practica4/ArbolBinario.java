@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class ArbolBinario<T extends Comparable<T>> implements TDAArbolBinario<T> {
+public class ArbolBinario<T extends Comparable<T>> implements TDAArbolBinario<T>, Serializable {
     
-    private class Vertice implements VerticeArbolBinario<T> {
+    private class Vertice implements Serializable, VerticeArbolBinario<T> {
         public T elemento;
         public Vertice padre, izquierdo, derecho;
 
@@ -91,6 +92,7 @@ public class ArbolBinario<T extends Comparable<T>> implements TDAArbolBinario<T>
             }
         }
     }
+    
 
     /**
      * Metodo para agregar nuevo vértice en un lugar especifico
@@ -276,6 +278,18 @@ public class ArbolBinario<T extends Comparable<T>> implements TDAArbolBinario<T>
             if(v.derecho != null) cola.add(v.derecho);
         }
         return resultado.trim();
+    }
+
+
+    /**
+     * Método para sustituir el valor de un elemento del arbol
+     * @param VerticeArbolBinario v vertice para sustituir dato
+     * @param T nuevoElemento nuevo valor para el vertice
+     */
+    public void sustituirElemento(VerticeArbolBinario<T> v, T nuevoElemento){
+        if(v == null) throw new IllegalArgumentException("El vértice no puede ser nulo");
+        Vertice vertice = (Vertice) v;
+        vertice.elemento = nuevoElemento;
     }
     
 }
