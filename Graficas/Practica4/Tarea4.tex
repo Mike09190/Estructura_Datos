@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish, activeacute]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\renewcommand{\proofname}{Dem:}
+
+
+\begin{document}
+\begin{enumerate}
+\item ola \newline
+\item ola \newline \newpage
+  %Ejercicio 3
+\item Sean $G$ y $H$ gráficas. Demuestra que $\chi(G+H)$ $=$ $\chi(G)+\chi(H)$
+  \begin{itemize}
+  \item Probar que  $\chi(G+H)$ $\leq$ $\chi(G)+\chi(H)$ \\
+    Sea $c_1$ el conjunto de colores para colorear a $G$ \\
+    Sea $c_2$ el conjunto de colores para colorear a $H$ \\
+    Y además $c_1 \cap c_2 = \emptyset$. \\
+    Ahora vamos a asignar a cada vértice de $G+H$ su coloración anterior de $G$ o $H$ respectivamente. \\
+    \underline{PD} Que es una coloración propia. \\
+    Sean $u_1,u_2 \in V(G+H)$ tenemos algunos casos. \\
+    \begin{itemize}
+    \item Si $u_1,u_2 \in V(G)$, tienen colores distintos dado que la coloración de $G$ es propia.
+    \item Si $u_1,u_1 \in V(H)$, pasa lo mismo que el caso de arriba
+    \item Supongamos s.p.g que $u_1\in V(G)$ y $u_2 \in V(H)$, sabemos que son vecinos en $G+H$. Como $u$ tiene color en $c_1$ y $v$ tiene color en
+      $c_2$, y sabemos que no comparten elementos.\\
+      $\Longrightarrow$ Tienen colores distintos. Por lo tanto usamos exactamente $c_1 \cup c_2 $
+    \end{itemize}
+    $\therefore$  $\chi(G+H)$ $\leq$ $|c_1 \cup c_2| =$ $\chi(G)+\chi(H)$
+  \item  $\chi(G+H)$ $\geq$ $\chi(G)+\chi(H)$ \\
+    Sea $C$ una coloración propia para $G+H$. Vamos a decir que esta coloración tiene exactamente $\chi(G+H)$ \\
+    Sea $c_1$ la coloración para los vértices de $G$ \\
+    Sea $c_2$ la coloración para los vértices de $H$ \\
+    Analizemos que pasa con las coloraciones, como todos los vertices de $G$ se conectan con todos los vértices de $H$ (esto ocurre por def de suma)
+    \\ Entonces ningún de vértice de $G$ puede compartir color con algún vértice de $H$. Si compartieran un color, tendríamos que dos vértices
+    vecinos comparten color, y ya no sería una coloración propia. \\
+    $\therefore$ $c_1 \cap c_2 = \emptyset$ \\
+    Como la coloración en $G$ sigue siendo propia, se necesitan al menos $\chi(G)$ colores distintos para $G$, por lo que $|c_1| \geq \chi(G)$ \\
+    De manera analoga $|c_2| \geq \chi(H)$ \\
+    Dado que las coloraciones que usamos son disjuntas, tenemos que:
+    \begin{center}
+      $\chi(G+H) = |c_1 \cup c_2| = |c_1| + |c_2| \geq \chi(G) + \chi(H)$
+    \end{center}
+  \end{itemize}
+  $\therefore$ como vimos que es mayor igual y menor igual podemos concluir que. \\
+  $\chi(G+H)$ $=$ $\chi(G)+\chi(H)$
+  \newpage
+  %Ejercicio 4
+\item Sea $G$ una gráfica, demuestra que $\chi(G)\chi(\overline{G}) \geq n$ 
+  \begin{proof}
+    
+    Sea $c: V(G) \longrightarrow {1,...,\chi(G)}$ una coloración propia de $G$ por def. de número cromático \\
+    Sean $c_1,....,c_{\chi(G)}$ las clases de color asociado \\
+    \newline
+    Sean $u,v \in C_i$ con $u \neq v$. Como $u,v$ tienen el mismo color y $c$ es una coloración propia, se sigue que $uv \notin E(G)$ \\
+    Por def. de gráfica complementaria se sigue que $uv \in E(G)$ \\
+    \newline
+    Como esto ocurre para cualquiera dos vértices distintos en $c_i$, concluimos que todos los vértices de $c_i$ son mutuamente adyacentes
+    en $\overline{G}$ \\
+    \newline
+    Ahora en una coloración propia de $\overline{G}$, vertices mutuamente adyacentes deben recibir dos colores distintos. Por lo tanto, para
+    colorear los vertices de $c_i$ se requieren al menos $|c_i|$ colores. Como $X(\overline{G})$ es el número mínimo de colores para colorear
+    $\overline{G}$, obtenemos $|c_i| \leq X(\overline{G})$ para todo $i \in {1,...,\chi(G)}$ \\
+    Entonces sumando sobre todas las clases de color que participan a $V(G)$ \\
+    \begin{center}
+      $n = |c_1|+ ....+ |c_{\chi(G)}| \leq \chi(\overline{G})+....+\chi(\overline{G}) $ $=$ $\chi(G)\chi(\overline{G})$
+    \end{center}
+    $\therefore$ $\chi(G)\chi(\overline{G}) \geq n$
+
+  \end{proof}
+  \newpage
+  %Ejercicio 5
+\item Demuestra que $G+H$ es una gráfica $k$-cromática crítica si y solo si $G$ y $H$ son $K$-cromáticas críticas. \\
+  \begin{proof}
+    \begin{itemize}
+    \item $\Longrightarrow$ Supongamos que $(G+H) es k$-cromática crítica, \underline{PD} $G$ y $H$ son $k$-cromáticas críticas. \\
+      Entonces por def. $\chi(G+H) = k$. \\
+      Queremos ver que $\chi(G) = k_1$ \\
+      sea $u \in V(G)$ y veamos que pasa con $\chi(G-u)$ \\
+      Sea $G' = G -u$ y entonces tenemos que $G'+H$ $=$ $(G-u) +H$ Por Hipotesis, $G+H$ es crítica, entonces al quitar un vértice disminuye en uno
+      \begin{center}
+        $\chi((G-u)+H) = \chi(G+H) - 1$
+      \end{center}
+      Por lo que probamos en el \textbf{Ejercicio 3}
+      \begin{center}
+        $\chi(G-u) + \chi(H) = \chi(G) + \chi(H) - 1$ \\
+        Restando $\chi(H)$ \\
+     
+        $\chi(G-u) = \chi(G) - 1$ \\
+       \end{center}
+       Como al quitar cualquier vértice de $G$ su número cromático disminuye, $G$ es crítica.  \\
+       El caso con $H$ es analogo a $G$. \\
+     \item $\Leftarrow$ Supongamos que $G$ y $H$ son críticas, \underline{PD} $G+H$ es $k$-crítica. \\
+       Supongamos que $\chi(G) = k_1$ y $\chi(H) = k_2$, entonces \underline{PD} $k = k_1+ k_2$ \\
+       \textbf{ Por ejercicio 3} tenemos que: \\
+       \begin{center}
+         $\chi(G+H) = \chi(G) + \chi(H) = k_1 + k_2 = k$
+       \end{center}
+       Ahora si quitamos un vértice $tq$ $v \in V(G+H)$, por la def. de suma existen dos casos.
+       \begin{itemize}
+       \item Si $v \in V(G)$ \\
+         Si quitamos el vértice entonces la gráfica sería de la forma $(G-v) +H$. Entonces su número cromático sería. \\
+         \begin{center}
+           $\chi((G-v)+ H) = \chi(G-v) + \chi(H) = \chi(G) + \chi(H) - 1 = k-1$
+         \end{center}
+         
+       \item Si $v \in V(H)$
+         Este es analogo al caso 1.
+         $\Longrightarrow$ $\chi(G+(H-v)) = \chi(G) + \chi(H-v) = \chi(G) + \chi(H) - 1 = k-1$
+       \end{itemize}
+       En ambos casos no importa de donde se tome el vértice, el número cromático de la gráfica siempre va a disminuir a $k-1$ \\
+       $\therefore$ $G+H$ es $k$-cromática crítica. \\
+    \end{itemize}
+  \end{proof}
+\end{enumerate}
+
+\end{document}

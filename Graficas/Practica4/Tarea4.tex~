@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish, activeacute]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\renewcommand{\proofname}{Dem:}
+
+
+\begin{document}
+\begin{enumerate}
+\item ola \newline
+\item ola \newline \newpage
+  %Ejercicio 3
+\item Sean $G$ y $H$ gráficas. Demuestra que $\chi(G+H)$ $=$ $\chi(G)+\chi(H)$
+
+
+\end{enumerate}
+
+\end{document}
